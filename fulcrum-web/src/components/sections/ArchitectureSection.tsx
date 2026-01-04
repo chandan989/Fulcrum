@@ -72,7 +72,7 @@ export function ArchitectureSection() {
               </div>
 
               {/* Content */}
-              <div>
+              <div className="relative z-10">
                 <h3 className="font-display text-lg font-bold uppercase tracking-wide mb-1">
                   {layer.name}
                 </h3>
@@ -85,7 +85,7 @@ export function ArchitectureSection() {
               </div>
 
               {/* Number indicator */}
-              <div className="absolute bottom-4 right-4 font-display text-4xl font-bold text-border-secondary">
+              <div className="absolute bottom-4 right-4 font-display text-4xl font-bold text-border-secondary z-0 pointer-events-none">
                 0{index + 1}
               </div>
             </div>

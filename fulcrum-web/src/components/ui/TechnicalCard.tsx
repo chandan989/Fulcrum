@@ -41,8 +41,8 @@ export function TechnicalCard({
       onClick={onClick}
       style={{
         ...style,
-        boxShadow: variant === "elevated" 
-          ? "8px 8px 0px hsl(214 20% 88%)" 
+        boxShadow: variant === "elevated"
+          ? "8px 8px 0px hsl(214 20% 88%)"
           : "6px 6px 0px hsl(214 20% 88%)",
       }}
     >
