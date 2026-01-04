@@ -5,7 +5,7 @@ import {
   ArrowLeft, Plus, Send, RefreshCw, FileCode, X, Copy, Check,
   Clock, Zap, Shield, ExternalLink, ChevronRight, Loader2,
   ArrowRightLeft, Code, AlertTriangle, Layers, Wallet, Menu,
-  Home, Settings2, Bot, Building2, BarChart3, Settings
+  Home, Settings2, Bot, Building2, BarChart3, Settings, BookOpen
 } from 'lucide-react';
 import { TechnicalCard } from '@/components/ui/TechnicalCard';
 import { TechnicalButton } from '@/components/ui/TechnicalButton';
@@ -122,6 +122,7 @@ const Intents = () => {
     { icon: Zap, label: "Intents", path: "/intents", active: true },
     { icon: Building2, label: "Governance", path: "/governance" },
     { icon: BarChart3, label: "Analytics", path: "/analytics" },
+    { icon: BookOpen, label: "Docs", path: "/docs" },
     { icon: Settings, label: "Settings", path: "/settings" },
   ];
 

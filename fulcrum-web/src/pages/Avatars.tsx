@@ -11,6 +11,7 @@ import {
   BarChart3,
   Settings,
   Wallet,
+  BookOpen,
   Menu,
   X,
   Plus,
@@ -73,6 +74,7 @@ const Avatars = () => {
     { icon: Zap, label: "Intents", path: "/intents" },
     { icon: Building2, label: "Governance", path: "/governance" },
     { icon: BarChart3, label: "Analytics", path: "/analytics" },
+    { icon: BookOpen, label: "Docs", path: "/docs" },
     { icon: Settings, label: "Settings", path: "/settings" },
   ];
 

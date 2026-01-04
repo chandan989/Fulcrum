@@ -22,6 +22,7 @@ import {
     RefreshCw,
     Power,
     ChevronRight,
+    BookOpen,
 } from "lucide-react";
 
 const Settings = () => {
@@ -35,6 +36,7 @@ const Settings = () => {
         { icon: Zap, label: "Intents", path: "/intents" },
         { icon: Building2, label: "Governance", path: "/governance" },
         { icon: BarChart3, label: "Analytics", path: "/analytics" },
+        { icon: BookOpen, label: "Docs", path: "/docs" },
         { icon: SettingsIcon, label: "Settings", path: "/settings", active: true },
     ];
 

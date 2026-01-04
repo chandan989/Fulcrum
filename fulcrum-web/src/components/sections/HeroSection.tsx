@@ -70,7 +70,7 @@ export function HeroSection() {
                 Launch App
               </TechnicalButton>
             </Link>
-            <a href="#architecture">
+            <Link to="/docs">
               <TechnicalButton
                 variant="secondary"
                 size="lg"
@@ -78,7 +78,7 @@ export function HeroSection() {
               >
                 Read Documentation
               </TechnicalButton>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

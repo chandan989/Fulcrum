@@ -57,16 +57,16 @@ export function ProblemSection() {
             <TechnicalCard
               key={index}
               technicalRef={problem.ref}
-              className="space-y-6 animate-slide-in-up"
+              className="space-y-6 animate-slide-in-up group hover:border-primary/50 transition-colors duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
-              <div className="w-12 h-12 border-2 border-border flex items-center justify-center bg-muted">
-                <problem.icon className="w-6 h-6 text-foreground" strokeWidth={2} />
+              <div className="w-12 h-12 border-2 border-border flex items-center justify-center bg-muted group-hover:bg-primary/10 group-hover:border-primary/50 transition-all duration-300">
+                <problem.icon className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" strokeWidth={2} />
               </div>
 
               {/* Title */}
-              <h3 className="font-display text-xl font-bold uppercase tracking-wide">
+              <h3 className="font-display text-xl font-bold uppercase tracking-wide group-hover:text-primary transition-colors">
                 {problem.title}
               </h3>
 
@@ -74,7 +74,7 @@ export function ProblemSection() {
               <div className="space-y-3">
                 {problem.stats.map((stat, statIndex) => (
                   <div key={statIndex} className="flex items-baseline gap-3">
-                    <span className="font-display text-2xl font-bold text-primary">
+                    <span className="font-display text-2xl font-bold text-primary group-hover:text-foreground transition-colors">
                       {stat.value}
                     </span>
                     <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
@@ -85,7 +85,7 @@ export function ProblemSection() {
               </div>
 
               {/* Description */}
-              <p className="text-sm text-muted-foreground font-body leading-relaxed">
+              <p className="text-sm text-muted-foreground font-body leading-relaxed group-hover:text-foreground transition-colors">
                 {problem.description}
               </p>
             </TechnicalCard>

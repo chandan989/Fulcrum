@@ -27,6 +27,7 @@ import {
   UserPlus,
   Key,
   DollarSign,
+  BookOpen,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -43,6 +44,7 @@ const Controller = () => {
     { icon: Zap, label: "Intents", path: "/intents" },
     { icon: Building2, label: "Governance", path: "/governance" },
     { icon: BarChart3, label: "Analytics", path: "/analytics" },
+    { icon: BookOpen, label: "Docs", path: "/docs" },
     { icon: Settings, label: "Settings", path: "/settings" },
   ];
 

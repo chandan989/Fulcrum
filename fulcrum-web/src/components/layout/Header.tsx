@@ -41,14 +41,12 @@ export function Header() {
             >
               Use Cases
             </a>
-            <a
-              href="https://docs.fulcrum.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/docs"
               className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
             >
               Docs
-            </a>
+            </Link>
           </nav>
 
           {/* CTA Buttons */}
@@ -98,12 +96,12 @@ export function Header() {
             >
               Use Cases
             </a>
-            <a
-              href="https://docs.fulcrum.xyz"
+            <Link
+              to="/docs"
               className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground"
             >
               Docs
-            </a>
+            </Link>
             <div className="flex flex-col gap-2 pt-4">
               <TechnicalButton variant="secondary" size="sm">
                 Connect Wallet

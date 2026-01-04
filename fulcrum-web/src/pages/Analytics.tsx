@@ -16,6 +16,7 @@ import {
     Wallet,
     Download,
     Calendar,
+    BookOpen,
 } from "lucide-react";
 import { TransactionChart } from "@/components/analytics/TransactionChart";
 import { GasChart } from "@/components/analytics/GasChart";
@@ -32,6 +33,7 @@ const Analytics = () => {
         { icon: Zap, label: "Intents", path: "/intents" },
         { icon: Building2, label: "Governance", path: "/governance" },
         { icon: BarChart3, label: "Analytics", path: "/analytics", active: true },
+        { icon: BookOpen, label: "Docs", path: "/docs" },
         { icon: Settings, label: "Settings", path: "/settings" },
     ];
 

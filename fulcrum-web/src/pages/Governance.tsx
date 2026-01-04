@@ -23,6 +23,7 @@ import {
     Settings,
     Wallet,
     X,
+    BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
@@ -37,6 +38,7 @@ const Governance = () => {
         { icon: Zap, label: "Intents", path: "/intents" },
         { icon: Building2, label: "Governance", path: "/governance", active: true },
         { icon: BarChart3, label: "Analytics", path: "/analytics" },
+        { icon: BookOpen, label: "Docs", path: "/docs" },
         { icon: Settings, label: "Settings", path: "/settings" },
     ];
 

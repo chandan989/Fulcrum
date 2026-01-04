@@ -54,13 +54,13 @@ export function CTASection() {
               <Github className="w-4 h-4" />
               GitHub
             </a>
-            <a
-              href="#"
+            <Link
+              to="/docs"
               className="flex items-center gap-2 font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
             >
               <FileText className="w-4 h-4" />
               Documentation
-            </a>
+            </Link>
             <a
               href="#"
               className="flex items-center gap-2 font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"

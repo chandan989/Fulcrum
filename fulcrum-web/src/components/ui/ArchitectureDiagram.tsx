@@ -118,7 +118,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           <text x="50" y="55" textAnchor="middle" className="font-mono text-xs" fill="hsl(215 16% 47%)">
             Avatar
           </text>
-          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" />
+          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" className="animate-pulse" />
         </g>
 
         {/* Base */}
@@ -138,7 +138,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           <text x="50" y="55" textAnchor="middle" className="font-mono text-xs" fill="hsl(215 16% 47%)">
             Avatar
           </text>
-          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" />
+          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" className="animate-pulse" />
         </g>
 
         {/* Arbitrum */}
@@ -158,7 +158,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           <text x="50" y="55" textAnchor="middle" className="font-mono text-xs" fill="hsl(215 16% 47%)">
             Avatar
           </text>
-          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" />
+          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" className="animate-pulse" />
         </g>
 
         {/* BSC */}
@@ -178,7 +178,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           <text x="50" y="55" textAnchor="middle" className="font-mono text-xs" fill="hsl(215 16% 47%)">
             Avatar
           </text>
-          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" />
+          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" className="animate-pulse" />
         </g>
 
         {/* Polygon */}
@@ -198,7 +198,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           <text x="50" y="55" textAnchor="middle" className="font-mono text-xs" fill="hsl(215 16% 47%)">
             Avatar
           </text>
-          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" />
+          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" className="animate-pulse" />
         </g>
 
         {/* Optimism */}
@@ -218,7 +218,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           <text x="50" y="55" textAnchor="middle" className="font-mono text-xs" fill="hsl(215 16% 47%)">
             Avatar
           </text>
-          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" />
+          <circle cx="90" cy="10" r="4" fill="hsl(160 84% 39%)" className="animate-pulse" />
         </g>
 
         {/* Connection Lines */}
