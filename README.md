@@ -1,12 +1,13 @@
-# Fulcrum 🏗️
-
 <div align="center">
+
+# Fulcrum 
+
+
+<img src="Logo.svg" alt="Fulcrum Logo" width="200" height="200" />
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
 ![Version](https://img.shields.io/badge/version-0.1.0--alpha-orange.svg)
-[![Discord](https://img.shields.io/badge/discord-join-7289da.svg)](https://discord.gg/fulcrum)
-[![Twitter](https://img.shields.io/badge/twitter-follow-1da1f2.svg)](https://twitter.com/fulcrum)
 
 **Critical Infrastructure for the Multi-Chain Future**
 
