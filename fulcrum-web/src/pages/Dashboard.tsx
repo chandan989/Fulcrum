@@ -28,12 +28,19 @@ import { cn } from "@/lib/utils";
 import { CreateIntentDialog } from "@/components/dialogs/CreateIntentDialog";
 import { DeployAvatarDialog } from "@/components/dialogs/DeployAvatarDialog";
 import { AddFundsDialog } from "@/components/dialogs/AddFundsDialog";
+import { LoadingScreen } from "@/components/LoadingScreen";
 
 const Dashboard = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [createIntentOpen, setCreateIntentOpen] = useState(false);
   const [deployAvatarOpen, setDeployAvatarOpen] = useState(false);
   const [addFundsOpen, setAddFundsOpen] = useState(false);
+
+  // Moved after all hooks to comply with Rules of Hooks
+  if (isLoading) {
+    return <LoadingScreen onComplete={() => setIsLoading(false)} />;
+  }
 
   const navItems = [
     { icon: Home, label: "Overview", path: "/dashboard", active: true },

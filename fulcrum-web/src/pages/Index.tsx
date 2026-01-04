@@ -7,8 +7,16 @@ import { TechnologySection } from "@/components/sections/TechnologySection";
 import { UseCasesSection } from "@/components/sections/UseCasesSection";
 import { SpecsSection } from "@/components/sections/SpecsSection";
 import { CTASection } from "@/components/sections/CTASection";
+import { useState } from "react";
+import { LoadingScreen } from "@/components/LoadingScreen";
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  if (isLoading) {
+    return <LoadingScreen onComplete={() => setIsLoading(false)} />;
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
