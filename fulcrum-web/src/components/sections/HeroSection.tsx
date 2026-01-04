@@ -1,19 +1,27 @@
 import { TechnicalButton } from "@/components/ui/TechnicalButton";
 import { TechnicalBadge } from "@/components/ui/TechnicalBadge";
-import { ArrowRight, Shield, Layers, Zap } from "lucide-react";
+import { ArrowRight, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Hero3DScene } from "./Hero3DScene";
 
 export function HeroSection() {
   return (
-    <section className="relative bg-graph-paper overflow-hidden">
-      {/* Corner decorations */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-t-2 border-l-2 border-border hidden lg:block" />
-      <div className="absolute top-8 right-8 w-16 h-16 border-t-2 border-r-2 border-border hidden lg:block" />
-      <div className="absolute bottom-8 left-8 w-16 h-16 border-b-2 border-l-2 border-border hidden lg:block" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-b-2 border-r-2 border-border hidden lg:block" />
+    <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-background">
+      {/* 3D Background - Now sits on top of the graph paper but below content */}
+      <Hero3DScene />
 
-      <div className="container-wide py-24 lg:py-32">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+
+      {/* Graph Paper Pattern removed for better visibility of 3D elements */}
+      {/* <div className="absolute inset-0 bg-graph-paper z-0 opacity-50 pointer-events-none" /> */}
+
+      {/* Decorative Corners - Clean Technical Style */}
+      <div className="absolute top-8 left-8 w-16 h-16 border-t-2 border-l-2 border-primary/20 corner-brackets hidden lg:block" />
+      <div className="absolute top-8 right-8 w-16 h-16 border-t-2 border-r-2 border-primary/20 corner-brackets hidden lg:block" />
+      <div className="absolute bottom-8 left-8 w-16 h-16 border-b-2 border-l-2 border-primary/20 corner-brackets hidden lg:block" />
+      <div className="absolute bottom-8 right-8 w-16 h-16 border-b-2 border-r-2 border-primary/20 corner-brackets hidden lg:block" />
+
+      <div className="container-wide relative z-10">
+        <div className="max-w-5xl mx-auto text-center space-y-8">
           {/* Status Badge */}
           <div className="inline-flex items-center gap-2 animate-fade-in">
             <TechnicalBadge variant="primary" icon={<Shield className="w-3 h-3" />}>
@@ -22,74 +30,61 @@ export function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-tight animate-slide-in-up">
-            Critical Infrastructure
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight leading-none animate-slide-in-up text-foreground">
+            Critical
             <br />
-            <span className="text-primary">For The Multi-Chain Future</span>
+            <span className="text-primary filter drop-shadow-sm">
+              Infrastructure
+            </span>
           </h1>
 
           {/* Subheading */}
-          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-slide-in-up stagger-1" style={{ animationDelay: "0.1s" }}>
-            The first Omni-Chain Security & Governance Layer. 
-            Built on Casper. Secured by Zero-Knowledge proofs.
+          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-slide-in-up stagger-1 leading-relaxed">
+            The first Omni-Chain Security & Governance Layer. <br className="hidden md:block" />
+            Built on <span className="font-semibold text-foreground">Casper</span>. Secured by <span className="font-semibold text-foreground">Zero-Knowledge</span> proofs.
           </p>
 
           {/* Key Features */}
-          <div className="flex flex-wrap justify-center gap-6 pt-4 animate-slide-in-up" style={{ animationDelay: "0.2s" }}>
-            <div className="flex items-center gap-2 font-mono text-sm">
-              <div className="w-2 h-2 bg-success" />
-              <span>One Source of Truth</span>
-            </div>
-            <div className="flex items-center gap-2 font-mono text-sm">
-              <div className="w-2 h-2 bg-primary" />
-              <span>Infinite Chain Reach</span>
-            </div>
-            <div className="flex items-center gap-2 font-mono text-sm">
-              <div className="w-2 h-2 bg-secondary" />
-              <span>3× Gas Reduction</span>
-            </div>
+          <div className="flex flex-wrap justify-center gap-6 pt-6 animate-slide-in-up">
+            {[
+              { label: "One Source of Truth", color: "bg-success" },
+              { label: "Infinite Chain Reach", color: "bg-primary" },
+              { label: "3× Gas Reduction", color: "bg-secondary" }
+            ].map((feature, i) => (
+              <div key={i} className="flex items-center gap-2 font-mono text-sm bg-surface-alt/80 border border-border-secondary px-3 py-1.5 backdrop-blur-sm">
+                <div className={`w-2 h-2 ${feature.color}`} />
+                <span className="text-muted-foreground font-semibold">{feature.label}</span>
+              </div>
+            ))}
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 animate-slide-in-up" style={{ animationDelay: "0.3s" }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-10 animate-slide-in-up">
             <Link to="/dashboard">
-              <TechnicalButton variant="primary" size="lg" icon={<ArrowRight className="w-5 h-5" />}>
+              <TechnicalButton
+                variant="primary"
+                size="lg"
+                icon={<ArrowRight className="w-5 h-5" />}
+                className="shadow-lg hover:shadow-xl"
+              >
                 Launch App
               </TechnicalButton>
             </Link>
             <a href="#architecture">
-              <TechnicalButton variant="secondary" size="lg">
+              <TechnicalButton
+                variant="secondary"
+                size="lg"
+                className="bg-card/50 hover:bg-card border-border shadow-sm hover:shadow-md"
+              >
                 Read Documentation
               </TechnicalButton>
             </a>
           </div>
-
-          {/* Stats Row */}
-          <div className="grid grid-cols-3 gap-8 pt-16 border-t-2 border-border mt-16 animate-slide-in-up" style={{ animationDelay: "0.4s" }}>
-            <div className="text-center">
-              <div className="font-display text-3xl md:text-4xl font-bold text-primary">6+</div>
-              <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mt-1">
-                Chains Supported
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="font-display text-3xl md:text-4xl font-bold text-primary">50k</div>
-              <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mt-1">
-                Gas per Verification
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="font-display text-3xl md:text-4xl font-bold text-primary">100%</div>
-              <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mt-1">
-                Open Source
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
+      {/* Subtle fade at the bottom to merge with next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-1" />
     </section>
   );
 }
