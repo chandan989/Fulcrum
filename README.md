@@ -1117,8 +1117,6 @@ npm start
 
 ### Your First Cross-Chain Transaction
 
-**Full tutorial:** [See detailed Getting Started section in enhanced_readme.md]
-
 ---
 
 ## 🔌 API & SDK
@@ -1154,8 +1152,6 @@ console.log('Intent hash:', intent.hash);
 console.log('Status:', await fulcrum.getStatus(intent.hash));
 ```
 
-[Full API documentation available in main README]
-
 ---
 
 ## 🧪 Testing
@@ -1189,10 +1185,6 @@ Current coverage (target: 90%+):
 - Relayer: 81%
 
 ---
-
-## 🚀 Deployment
-
-[See full deployment guide in enhanced_readme.md]
 
 ---
 
@@ -1332,15 +1324,6 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE)
-
----
-
-## 🏆 Acknowledgments
-
-- **Casper Association** for ecosystem support and grant funding
-- **ERC-4337 authors** for Account Abstraction standard
-- **ZK research community** for cryptographic primitives
-- **Our contributors** for making this possible
 
 ---
 
