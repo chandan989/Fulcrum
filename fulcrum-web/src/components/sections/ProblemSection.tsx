@@ -11,7 +11,7 @@ export function ProblemSection() {
         { value: "$3.8B", label: "Lost to key theft in 2024" },
         { value: "4.2", label: "Wallets per user across chains" },
       ],
-      description: "Every chain means a new private key to secure. One compromised key = total asset loss on that chain.",
+      description: "Every new chain forces you to manage another private key. One slip, one phishing attack, one compromised device—and you lose everything on that chain. In 2024 alone, $3.8B vanished due to key theft.",
     },
     {
       icon: Users,
@@ -21,7 +21,7 @@ export function ProblemSection() {
         { value: "5", label: "Separate multi-sig setups" },
         { value: "∞", label: "Coordination overhead" },
       ],
-      description: "DAOs managing assets on 5 chains need 5 separate governance structures. Policies drift, security gaps emerge.",
+      description: "Managing a DAO across 5 chains? You're juggling 5 separate multi-sigs, 5 different approval processes, and infinite coordination headaches. Security policies drift. Gaps emerge. Risk compounds.",
     },
     {
       icon: DollarSign,
@@ -31,7 +31,7 @@ export function ProblemSection() {
         { value: "150k", label: "Gas for naive verification" },
         { value: "$7.50", label: "Per cross-chain operation" },
       ],
-      description: "On-chain Ed25519 verification is prohibitively expensive. Innovation stays siloed to single chains.",
+      description: "Want to verify an Ed25519 signature on-chain? That'll cost you 150,000 gas—about $7.50 per operation. This economic barrier keeps innovation locked in silos, preventing true cross-chain collaboration.",
     },
   ];
 
@@ -47,7 +47,7 @@ export function ProblemSection() {
             </span>
           </div>
           <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight">
-            Multi-Chain Reality is <span className="text-error">Broken</span>
+            The <span className="text-error">Multi-Chain Nightmare</span>
           </h2>
         </div>
 

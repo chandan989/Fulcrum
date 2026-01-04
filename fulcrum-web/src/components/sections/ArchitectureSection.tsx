@@ -8,21 +8,21 @@ export function ArchitectureSection() {
       icon: Lock,
       name: "Security Layer",
       description: "Casper Network",
-      details: "Ed25519 signatures, multi-sig governance, social recovery",
+      details: "Your single source of truth. All keys, all policies, all governance—secured on Casper with Ed25519 signatures, weighted multi-sig, and social recovery. One place to protect. One place to control.",
       badge: "CONTROLLER",
     },
     {
       icon: Cpu,
       name: "Infrastructure Layer",
       description: "ZK Prover Network",
-      details: "Groth16 proofs for Ed25519 verification",
+      details: "The invisible bridge. Our ZK Prover Network generates Groth16 proofs that make Ed25519 verification economically viable on EVM chains. You don't see it. You just benefit from it.",
       badge: "RELAYER",
     },
     {
       icon: Globe,
       name: "Execution Layer",
       description: "EVM Chains",
-      details: "Smart accounts (Avatars) on Ethereum, Base, BSC, Arbitrum",
+      details: "Your presence everywhere. Smart contract Avatars on every EVM chain—Ethereum, Base, BSC, Arbitrum, and beyond. They execute your intent, verified by zero-knowledge proofs, controlled from Casper.",
       badge: "AVATAR",
     },
   ];
@@ -39,11 +39,10 @@ export function ArchitectureSection() {
             </span>
           </div>
           <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-4">
-            Three-Layer Architecture
+            Elegant Architecture, <span className="text-primary">Infinite Power</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto font-body">
-            One source of truth on Casper. Infinite reach across EVM chains. 
-            Zero-Knowledge proofs bridge the cryptographic gap.
+            Three layers working in perfect harmony: Casper anchors your security, ZK proofs bridge the cryptographic gap, and your Avatars execute everywhere. One decision, infinite reach.
           </p>
         </div>
 
@@ -63,7 +62,7 @@ export function ArchitectureSection() {
               {/* Corner bracket */}
               <div className="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 border-primary" />
               <div className="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 border-primary" />
-              
+
               {/* Header */}
               <div className="flex items-start justify-between">
                 <div className="w-10 h-10 border-2 border-border flex items-center justify-center bg-muted">

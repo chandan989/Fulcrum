@@ -9,7 +9,7 @@ export function UseCasesSection() {
       title: "DAO Treasury Management",
       ref: "UC-001",
       badge: "GOVERNANCE",
-      description: "Unified multi-sig across all chains. One governance structure, infinite reach.",
+      description: "Stop juggling multi-sigs across chains. One governance structure. One vote. Infinite execution. Your DAO operates with the same security and coordination whether you're on Ethereum or Arbitrum.",
       features: [
         "Weighted voting across chain treasuries",
         "Time-locked large transactions",
@@ -22,7 +22,7 @@ export function UseCasesSection() {
       title: "Family Office",
       ref: "UC-002",
       badge: "WEALTH",
-      description: "Trustee access control with social recovery. Generational wealth protection.",
+      description: "Protect generational wealth with institutional-grade security. Trustee controls, social recovery, and inheritance automation—all managed from one place. Because your legacy deserves better than scattered private keys.",
       features: [
         "Multi-generational key hierarchy",
         "Trustee spending approvals",
@@ -35,7 +35,7 @@ export function UseCasesSection() {
       title: "Protocol-Owned Liquidity",
       ref: "UC-003",
       badge: "DEFI",
-      description: "Automated LP management across DEXs. One policy, every chain.",
+      description: "Manage LP positions across every DEX from a single control plane. Automated rebalancing, yield optimization, emergency circuits—all with 67% lower gas costs. Your protocol, everywhere.",
       features: [
         "Cross-chain LP rebalancing",
         "Yield optimization strategies",
@@ -48,7 +48,7 @@ export function UseCasesSection() {
       title: "Corporate Treasury",
       ref: "UC-004",
       badge: "ENTERPRISE",
-      description: "SOC2/ISO27001 compliant controls. Board-level security for digital assets.",
+      description: "SOC2 and ISO27001 compliant controls for your digital assets. Separation of duties, audit logs, geographic restrictions, multi-party approvals. Board-level security for blockchain operations.",
       features: [
         "Separation of duties enforcement",
         "Compliance-ready audit logs",
@@ -69,11 +69,10 @@ export function UseCasesSection() {
             </span>
           </div>
           <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-4">
-            Built For <span className="text-primary">Critical Operations</span>
+            Built For Those Who <span className="text-primary">Can't Afford Mistakes</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto font-body">
-            From DAO treasuries to family offices, Fulcrum provides the security 
-            and governance infrastructure for any multi-chain operation.
+            Whether you're securing a DAO treasury, protecting generational wealth, or managing protocol-owned liquidity, Fulcrum gives you the infrastructure that matches the stakes.
           </p>
         </div>
 

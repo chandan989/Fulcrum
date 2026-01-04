@@ -7,7 +7,7 @@ export function CTASection() {
     <section className="bg-graph-paper py-24 relative overflow-hidden">
       {/* Grid overlay effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-      
+
       {/* Corner decorations */}
       <div className="absolute top-8 left-8 w-24 h-24 border-t-2 border-l-2 border-primary hidden lg:block" />
       <div className="absolute top-8 right-8 w-24 h-24 border-t-2 border-r-2 border-primary hidden lg:block" />
@@ -24,11 +24,11 @@ export function CTASection() {
 
           {/* Headline */}
           <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight pt-8">
-            You're Building <span className="text-primary">That Place</span>
+            You're Building the Future of <span className="text-primary">Multi-Chain Security</span>
           </h2>
           <p className="text-lg text-muted-foreground font-body max-w-xl mx-auto">
-            Start securing your multi-chain assets with a single source of truth. 
-            Deploy your first Controller in minutes.
+            Join the teams already securing billions across chains with a single source of truth.
+            Deploy your first Controller in under 5 minutes. No credit card required.
           </p>
 
           {/* Primary CTA */}
@@ -40,7 +40,7 @@ export function CTASection() {
                 icon={<ArrowRight className="w-5 h-5" />}
                 className="animate-pulse-glow"
               >
-                Start Securing Assets
+                Deploy Your Controller Free
               </TechnicalButton>
             </Link>
           </div>

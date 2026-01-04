@@ -459,6 +459,10 @@
     animation: pulse-glow 2s ease-in-out infinite;
   }
 
+  .animate-flow {
+    animation: flow-line 2s linear infinite;
+  }
+
   /* Stagger Animation Delays */
   .stagger-1 { animation-delay: 0.05s; }
   .stagger-2 { animation-delay: 0.1s; }

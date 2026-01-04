@@ -31,13 +31,12 @@ export function TechnologySection() {
             </span>
           </div>
           <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-4">
-            Zero-Knowledge Cryptography
+            The Breakthrough
             <br />
-            <span className="text-primary">At Scale</span>
+            <span className="text-primary">That Makes It Possible</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto font-body">
-            The key innovation: ZK-SNARKs make Ed25519 signature verification economically 
-            viable on EVM chains. 3× gas reduction unlocks true cross-chain security.
+            Ed25519 signature verification on EVM chains used to cost 150,000 gas. Economically impossible. We made it cost 50,000 gas using ZK-SNARKs. That's not an optimization. That's a paradigm shift.
           </p>
         </div>
 
@@ -52,7 +51,7 @@ export function TechnologySection() {
                 Economically Viable
               </TechnicalBadge>
             </div>
-            
+
             <GasComparison />
 
             {/* Key Benefits */}
@@ -91,7 +90,7 @@ export function TechnologySection() {
                 Smart Contract Integration
               </h3>
             </div>
-            
+
             <CodeBlock code={solidityCode} language="Solidity" />
 
             {/* Technical Notes */}

@@ -31,25 +31,25 @@ export function HeroSection() {
 
           {/* Headline */}
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight leading-none animate-slide-in-up text-foreground">
-            Critical
+            Secure Every Chain.
             <br />
             <span className="text-primary filter drop-shadow-sm">
-              Infrastructure
+              From One Place.
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-slide-in-up stagger-1 leading-relaxed">
-            The first Omni-Chain Security & Governance Layer. <br className="hidden md:block" />
-            Built on <span className="font-semibold text-foreground">Casper</span>. Secured by <span className="font-semibold text-foreground">Zero-Knowledge</span> proofs.
+            The omni-chain security layer that eliminates key fragmentation, unifies governance, and slashes gas costs—<br className="hidden md:block" />
+            powered by <span className="font-semibold text-foreground">Casper</span> and <span className="font-semibold text-foreground">zero-knowledge</span> proofs.
           </p>
 
           {/* Key Features */}
           <div className="flex flex-wrap justify-center gap-6 pt-6 animate-slide-in-up">
             {[
-              { label: "One Source of Truth", color: "bg-success" },
-              { label: "Infinite Chain Reach", color: "bg-primary" },
-              { label: "3× Gas Reduction", color: "bg-secondary" }
+              { label: "Unified Security Across All Chains", color: "bg-success" },
+              { label: "Deploy Once, Control Everywhere", color: "bg-primary" },
+              { label: "67% Lower Transaction Costs", color: "bg-secondary" }
             ].map((feature, i) => (
               <div key={i} className="flex items-center gap-2 font-mono text-sm bg-surface-alt/80 border border-border-secondary px-3 py-1.5 backdrop-blur-sm">
                 <div className={`w-2 h-2 ${feature.color}`} />

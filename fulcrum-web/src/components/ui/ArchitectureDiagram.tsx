@@ -27,7 +27,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
               strokeWidth="0.5"
             />
           </pattern>
-          
+
           {/* Arrow marker */}
           <marker
             id="arrowhead"
@@ -69,7 +69,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           <path d="M 120 0 L 120 15 M 120 0 L 105 0" stroke="hsl(18 100% 50%)" strokeWidth="2" fill="none" />
           <path d="M 0 120 L 0 105 M 0 120 L 15 120" stroke="hsl(18 100% 50%)" strokeWidth="2" fill="none" />
           <path d="M 120 120 L 120 105 M 120 120 L 105 120" stroke="hsl(18 100% 50%)" strokeWidth="2" fill="none" />
-          
+
           <text x="60" y="50" textAnchor="middle" className="font-display text-sm font-bold uppercase tracking-wider" fill="hsl(220 20% 6%)">
             Casper
           </text>
@@ -239,6 +239,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           strokeWidth="2"
           strokeDasharray="6,4"
           markerEnd="url(#arrowhead)"
+          className="animate-flow"
         />
         <path
           d="M 160 320 Q 250 320 340 220"
@@ -247,6 +248,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           strokeWidth="2"
           strokeDasharray="6,4"
           markerEnd="url(#arrowhead)"
+          className="animate-flow"
         />
 
         {/* Right side connections */}
@@ -257,6 +259,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           strokeWidth="2"
           strokeDasharray="6,4"
           markerEnd="url(#arrowhead)"
+          className="animate-flow"
         />
         <path
           d="M 460 200 L 640 210"
@@ -265,6 +268,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           strokeWidth="2"
           strokeDasharray="6,4"
           markerEnd="url(#arrowhead)"
+          className="animate-flow"
         />
         <path
           d="M 460 220 Q 550 320 640 320"
@@ -273,6 +277,7 @@ export function ArchitectureDiagram({ className }: ArchitectureDiagramProps) {
           strokeWidth="2"
           strokeDasharray="6,4"
           markerEnd="url(#arrowhead)"
+          className="animate-flow"
         />
 
         {/* Casper to ZK Prover */}
