@@ -51,8 +51,8 @@ const Governance = () => {
                 <div className="flex flex-col h-full">
                     <div className="h-16 flex items-center justify-between px-4 border-b-2 border-border">
                         <Link to="/" className="flex items-center gap-3">
-                            <div className="w-8 h-8 bg-primary flex items-center justify-center flex-shrink-0">
-                                <span className="font-display text-lg font-bold text-primary-foreground">F</span>
+                            <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+                                <img src="/Logo.svg" alt="Fulcrum Logo" className="w-full h-full" />
                             </div>
                             {sidebarOpen && (
                                 <span className="font-display text-lg font-bold uppercase tracking-wider">

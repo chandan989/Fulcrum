@@ -13,8 +13,8 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 bg-primary flex items-center justify-center">
-              <span className="font-display text-lg font-bold text-primary-foreground">F</span>
+            <div className="w-8 h-8 flex items-center justify-center">
+              <img src="/Logo.svg" alt="Fulcrum Logo" className="w-full h-full" />
             </div>
             <span className="font-display text-xl font-bold uppercase tracking-wider">
               Fulcrum

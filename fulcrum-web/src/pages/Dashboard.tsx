@@ -120,8 +120,8 @@ const Dashboard = () => {
           {/* Logo */}
           <div className="h-16 flex items-center justify-between px-4 border-b-2 border-border">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-primary flex items-center justify-center flex-shrink-0">
-                <span className="font-display text-lg font-bold text-primary-foreground">F</span>
+              <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+                <img src="/Logo.svg" alt="Fulcrum Logo" className="w-full h-full" />
               </div>
               {sidebarOpen && (
                 <span className="font-display text-lg font-bold uppercase tracking-wider">
@@ -389,7 +389,7 @@ const Dashboard = () => {
       </div>
 
       <CreateIntentDialog open={createIntentOpen} onOpenChange={setCreateIntentOpen} />
-      <DeployAvatarDialog open={deployAvatarOpen} onOpenChange={setDeployAvatarOpen} />
+      <DeployAvatarDialog open={deployAvatarOpen} onOpenChange={setDeployAvatarOpen} deployedChains={[]} />
       <AddFundsDialog open={addFundsOpen} onOpenChange={setAddFundsOpen} />
     </div>
   );
