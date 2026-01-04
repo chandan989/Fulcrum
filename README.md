@@ -1308,26 +1308,8 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 - **Discord:** [Join](https://discord.gg/fulcrum) - Primary community hub
 - **Twitter:** [@FulcrumProtocol](https://twitter.com/fulcrum)
-- **GitHub:** [Discussions](https://github.com/your-org/fulcrum/discussions)
+- **GitHub:** [Discussions](https://github.com/chandan989/Fulcrum/discussions)
 - **Email:** dev@fulcrum.io
-
----
-
-## 📚 Glossary
-
-**Avatar:** Smart Account on a target chain (Ethereum, Base, etc.) controlled by Casper Controller
-
-**Controller:** Master contract on Casper storing identity, permissions, governance rules
-
-**ZK-SNARK:** Zero-Knowledge Succinct Non-Interactive Argument of Knowledge; proves statement is true without revealing underlying data
-
-**Ed25519:** Signature scheme used by Casper (different from Ethereum's secp256k1)
-
-**Relayer:** Service that monitors Casper and executes intents on target chains
-
-**Gas Vault:** Contract on Casper where users deposit CSPR to pay for cross-chain gas
-
-[Full glossary in enhanced_readme.md]
 
 ---
 
@@ -1372,8 +1354,8 @@ MIT License - see [LICENSE](LICENSE)
 
 ---
 
-![GitHub Stars](https://img.shields.io/github/stars/your-org/fulcrum?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/your-org/fulcrum?style=social)
-![Contributors](https://img.shields.io/github/contributors/your-org/fulcrum)
+![GitHub Stars](https://img.shields.io/github/stars/chandan989/Fulcrum?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/chandan989/Fulcrum?style=social)
+![Contributors](https://img.shields.io/github/contributors/chandan989/Fulcrum)
 
 </div>
