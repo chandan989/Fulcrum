@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import {
@@ -11,6 +11,7 @@ import { TechnicalCard } from '@/components/ui/TechnicalCard';
 import { TechnicalButton } from '@/components/ui/TechnicalButton';
 import { TechnicalBadge } from '@/components/ui/TechnicalBadge';
 import { CreateIntentDialog } from '@/components/dialogs/CreateIntentDialog';
+import { IntentStorage, StoredIntent } from '@/lib/intentStorage';
 
 type ActionType = 'transfer' | 'swap' | 'contract' | 'batch';
 type IntentStatus = 'pending' | 'proving' | 'executing' | 'confirmed' | 'failed';
@@ -29,7 +30,40 @@ interface Intent {
   expiresAt: string;
   gasEstimate: string;
   proofProgress?: number;
+  deployHash?: string; // Add deploy hash for real intents
 }
+
+// Helper to convert StoredIntent to Intent
+const convertStoredIntent = (stored: StoredIntent): Intent => {
+  const chainColors: Record<string, string> = {
+    'Ethereum': '#627EEA',
+    'Base': '#0052FF',
+    'Arbitrum': '#28A0F0',
+    'BSC': '#F0B90B',
+    'Polygon': '#8247E5',
+    'Optimism': '#FF0420'
+  };
+
+  const createdDate = new Date(stored.timestamp);
+  const expiresDate = new Date(stored.timestamp + 48 * 60 * 60 * 1000); // 48 hours
+
+  return {
+    id: stored.id,
+    name: `${stored.action} on ${stored.chain}`,
+    chain: stored.chain,
+    chainColor: chainColors[stored.chain] || '#666',
+    action: stored.action.toLowerCase() as ActionType,
+    target: stored.target,
+    value: stored.value,
+    token: stored.value.split(' ')[1] || 'CSPR',
+    status: stored.status as IntentStatus,
+    createdAt: createdDate.toLocaleString(),
+    expiresAt: expiresDate.toLocaleString(),
+    gasEstimate: '~50,000',
+    deployHash: stored.deployHash,
+    proofProgress: stored.status === 'proving' ? 67 : undefined
+  };
+};
 
 const mockIntents: Intent[] = [
   {
@@ -75,34 +109,6 @@ const mockIntents: Intent[] = [
     gasEstimate: '125,000',
     proofProgress: 67,
   },
-  {
-    id: 'INT-4895',
-    name: 'Bridge Transfer',
-    chain: 'BSC',
-    chainColor: '#F0B90B',
-    action: 'transfer',
-    target: '0x8f3d...9c2e',
-    value: '25,000',
-    token: 'USDT',
-    status: 'pending',
-    createdAt: '2024-01-15 17:20:00',
-    expiresAt: '2024-01-17 17:20:00',
-    gasEstimate: '45,000',
-  },
-  {
-    id: 'INT-4896',
-    name: 'Failed Approval',
-    chain: 'Ethereum',
-    chainColor: '#627EEA',
-    action: 'contract',
-    target: '0xComp...lend',
-    value: '0',
-    token: 'COMP',
-    status: 'failed',
-    createdAt: '2024-01-15 12:00:00',
-    expiresAt: '2024-01-17 12:00:00',
-    gasEstimate: '65,000',
-  },
 ];
 
 const tokens = ['ETH', 'USDC', 'USDT', 'DAI', 'WBTC', 'LINK'];
@@ -114,6 +120,33 @@ const Intents = () => {
   const [selectedIntent, setSelectedIntent] = useState<Intent | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [realIntents, setRealIntents] = useState<Intent[]>([]);
+
+  // Load real intents from localStorage
+  useEffect(() => {
+    const loadIntents = () => {
+      const stored = IntentStorage.getAll();
+      const converted = stored.map(convertStoredIntent);
+      setRealIntents(converted);
+    };
+
+    loadIntents();
+
+    // Listen for new intents
+    const handleIntentCreated = () => loadIntents();
+    const handleIntentUpdated = () => loadIntents();
+
+    window.addEventListener('intentCreated', handleIntentCreated);
+    window.addEventListener('intentUpdated', handleIntentUpdated);
+
+    return () => {
+      window.removeEventListener('intentCreated', handleIntentCreated);
+      window.removeEventListener('intentUpdated', handleIntentUpdated);
+    };
+  }, []);
+
+  // Combine real intents with mock intents (real ones first)
+  const allIntents = [...realIntents, ...mockIntents];
 
   const navItems = [
     { icon: Home, label: "Overview", path: "/dashboard" },
@@ -153,8 +186,8 @@ const Intents = () => {
   };
 
   const filteredIntents = filterStatus === 'all'
-    ? mockIntents
-    : mockIntents.filter(i => i.status === filterStatus);
+    ? allIntents
+    : allIntents.filter(i => i.status === filterStatus);
 
   const openDetails = (intent: Intent) => {
     setSelectedIntent(intent);

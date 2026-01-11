@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { useCasper } from '@/hooks/useCasper';
 import { CasperService } from '@/lib/casper';
 import { toast } from 'sonner';
+import { IntentStorage } from '@/lib/intentStorage';
 
 type ActionType = 'transfer' | 'swap' | 'contract' | 'batch';
 
@@ -30,6 +31,9 @@ interface CreateIntentDialogProps {
 export function CreateIntentDialog({ open, onOpenChange }: CreateIntentDialogProps) {
     const [actionType, setActionType] = useState<ActionType>('transfer');
     const [selectedChain, setSelectedChain] = useState('');
+    const [recipientAddress, setRecipientAddress] = useState('');
+    const [amount, setAmount] = useState('');
+    const [selectedToken, setSelectedToken] = useState('ETH');
     const { isConnected, connect, publicKey } = useCasper();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -40,30 +44,92 @@ export function CreateIntentDialog({ open, onOpenChange }: CreateIntentDialogPro
             return;
         }
 
+        if (!selectedChain) {
+            toast.error("Please select a target chain!");
+            return;
+        }
+
+        if (!recipientAddress && actionType === 'transfer') {
+            toast.error("Please enter a recipient address!");
+            return;
+        }
+
         setIsSubmitting(true);
         const toastId = toast.loading("Preparing transaction...");
 
         try {
+            // Map chain name to chain ID
+            const chainIdMap: Record<string, number> = {
+                'Ethereum': 1,
+                'Base': 8453,
+                'Arbitrum': 42161,
+                'BSC': 56,
+                'Polygon': 137,
+                'Optimism': 10
+            };
+
+            const targetChainId = chainIdMap[selectedChain] || 1;
+
             // 1. Create Deploy
             toast.loading("Please sign the request in your wallet...", { id: toastId });
 
-            const deploy = await CasperService.createIntentDeploy(publicKey, {
-                targetChain: 1, // Ethereum
-                targetAddress: "0x1234567890123456789012345678901234567890", // Mock
-                data: "0x",
-                amount: "100"
-            });
+            const intentData = {
+                targetChain: targetChainId,
+                targetAddress: recipientAddress || "0x0000000000000000000000000000000000000000",
+                data: JSON.stringify({
+                    action: actionType,
+                    token: selectedToken,
+                    amount: amount || "0"
+                }),
+                amount: amount || "0"
+            };
+
+            const deploy = await CasperService.createIntentDeploy(publicKey, intentData);
 
             // 2. Sign and Send
             const deployHash = await CasperService.signAndSendDeploy(deploy, publicKey);
 
-            toast.success("Intent Submitted to Casper Network!", {
-                id: toastId,
-                description: `Deploy Hash: ${deployHash.slice(0, 10)}...`
+            // 3. Save to localStorage
+            const savedIntent = IntentStorage.add({
+                deployHash,
+                status: 'pending',
+                chain: selectedChain,
+                action: actionType.charAt(0).toUpperCase() + actionType.slice(1),
+                target: recipientAddress || 'N/A',
+                value: `${amount || '0'} ${selectedToken}`,
+                targetChain: targetChainId,
+                targetAddress: recipientAddress || "0x0000000000000000000000000000000000000000",
+                data: intentData.data
             });
 
-            // Close dialog after short delay
-            setTimeout(() => onOpenChange(false), 2000);
+            console.log('Intent saved:', savedIntent);
+
+            // 4. Emit custom event for UI update
+            window.dispatchEvent(new CustomEvent('intentCreated', { detail: savedIntent }));
+
+            toast.success("Intent Submitted to Casper Network!", {
+                id: toastId,
+                description: `Deploy Hash: ${deployHash.slice(0, 16)}...`
+            });
+
+            // 5. Simulate status updates (in real app, this would come from blockchain events)
+            setTimeout(() => {
+                IntentStorage.updateStatus(deployHash, 'proving');
+                window.dispatchEvent(new CustomEvent('intentUpdated'));
+            }, 3000);
+
+            setTimeout(() => {
+                IntentStorage.updateStatus(deployHash, 'confirmed');
+                window.dispatchEvent(new CustomEvent('intentUpdated'));
+            }, 8000);
+
+            // Close dialog and reset form
+            setTimeout(() => {
+                onOpenChange(false);
+                setRecipientAddress('');
+                setAmount('');
+                setSelectedChain('');
+            }, 2000);
 
         } catch (error) {
             console.error(error);
@@ -163,13 +229,15 @@ export function CreateIntentDialog({ open, onOpenChange }: CreateIntentDialogPro
                                 <input
                                     type="text"
                                     placeholder="0x..."
+                                    value={recipientAddress}
+                                    onChange={(e) => setRecipientAddress(e.target.value)}
                                     className="w-full px-4 py-3 border-2 border-primary bg-card font-mono text-sm focus:outline-none focus:ring-2 focus:ring-accent/20"
                                 />
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-mono uppercase tracking-wider mb-2">Token</label>
-                                    <select className="w-full px-4 py-3 border-2 border-primary bg-card font-mono text-sm focus:outline-none">
+                                    <select value={selectedToken} onChange={(e) => setSelectedToken(e.target.value)} className="w-full px-4 py-3 border-2 border-primary bg-card font-mono text-sm focus:outline-none">
                                         {tokens.map(token => (
                                             <option key={token} value={token}>{token}</option>
                                         ))}
@@ -180,6 +248,8 @@ export function CreateIntentDialog({ open, onOpenChange }: CreateIntentDialogPro
                                     <input
                                         type="text"
                                         placeholder="0.00"
+                                        value={amount}
+                                        onChange={(e) => setAmount(e.target.value)}
                                         className="w-full px-4 py-3 border-2 border-primary bg-card font-mono text-sm focus:outline-none focus:ring-2 focus:ring-accent/20"
                                     />
                                 </div>
