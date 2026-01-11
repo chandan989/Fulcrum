@@ -5,6 +5,9 @@ import {
 } from 'lucide-react';
 import { TechnicalButton } from '@/components/ui/TechnicalButton';
 import { cn } from "@/lib/utils";
+import { useCasper } from '@/hooks/useCasper';
+import { CasperService } from '@/lib/casper';
+import { toast } from 'sonner';
 
 type ActionType = 'transfer' | 'swap' | 'contract' | 'batch';
 
@@ -27,6 +30,51 @@ interface CreateIntentDialogProps {
 export function CreateIntentDialog({ open, onOpenChange }: CreateIntentDialogProps) {
     const [actionType, setActionType] = useState<ActionType>('transfer');
     const [selectedChain, setSelectedChain] = useState('');
+    const { isConnected, connect, publicKey } = useCasper();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSignAndSubmit = async () => {
+        if (!isConnected || !publicKey) {
+            toast.error("Please connect your Casper Wallet first!");
+            connect();
+            return;
+        }
+
+        setIsSubmitting(true);
+        const toastId = toast.loading("Preparing transaction...");
+
+        try {
+            // 1. Create Deploy
+            toast.loading("Please sign the request in your wallet...", { id: toastId });
+
+            const deploy = await CasperService.createIntentDeploy(publicKey, {
+                targetChain: 1, // Ethereum
+                targetAddress: "0x1234567890123456789012345678901234567890", // Mock
+                data: "0x",
+                amount: "100"
+            });
+
+            // 2. Sign and Send
+            const deployHash = await CasperService.signAndSendDeploy(deploy, publicKey);
+
+            toast.success("Intent Submitted to Casper Network!", {
+                id: toastId,
+                description: `Deploy Hash: ${deployHash.slice(0, 10)}...`
+            });
+
+            // Close dialog after short delay
+            setTimeout(() => onOpenChange(false), 2000);
+
+        } catch (error) {
+            console.error(error);
+            toast.error("Transaction Failed", {
+                id: toastId,
+                description: error instanceof Error ? error.message : "Unknown error"
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     if (!open) return null;
 
@@ -308,12 +356,12 @@ export function CreateIntentDialog({ open, onOpenChange }: CreateIntentDialogPro
                 </div>
 
                 <div className="border-t-2 border-primary p-4 flex justify-end gap-3 sticky bottom-0 bg-card z-10">
-                    <TechnicalButton variant="secondary" onClick={() => onOpenChange(false)}>
+                    <TechnicalButton variant="secondary" onClick={() => onOpenChange(false)} disabled={isSubmitting}>
                         Cancel
                     </TechnicalButton>
-                    <TechnicalButton onClick={() => onOpenChange(false)}>
+                    <TechnicalButton onClick={handleSignAndSubmit} disabled={isSubmitting}>
                         <Shield size={16} />
-                        Sign & Submit
+                        {isSubmitting ? 'Signing...' : 'Sign & Submit'}
                     </TechnicalButton>
                 </div>
             </div>

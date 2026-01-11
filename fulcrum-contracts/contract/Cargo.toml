@@ -1,0 +1,23 @@
+[package]
+name = "fulcrum-controller"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+casper-contract = "5.0.0"
+casper-types = "6.0.0"
+base64ct = "=1.7.2"
+
+[[bin]]
+name = "contract"
+path = "src/main.rs"
+bench = false
+doctest = false
+test = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = "z"
+overflow-checks = false
+panic = "abort"

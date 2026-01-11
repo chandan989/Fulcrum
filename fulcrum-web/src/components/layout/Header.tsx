@@ -3,9 +3,11 @@ import { TechnicalButton } from "@/components/ui/TechnicalButton";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useCasper } from "@/hooks/useCasper";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isConnected, publicKey, connect, disconnect } = useCasper();
 
   return (
     <header className="sticky top-0 z-50 bg-card border-b-2 border-border">
@@ -51,9 +53,17 @@ export function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <TechnicalButton variant="ghost" size="sm">
-              Connect Wallet
-            </TechnicalButton>
+            {/* Wallet Connection */}
+            {isConnected ? (
+              <TechnicalButton variant="ghost" size="sm" onClick={disconnect}>
+                <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse" />
+                {publicKey?.slice(0, 6)}...{publicKey?.slice(-4)}
+              </TechnicalButton>
+            ) : (
+              <TechnicalButton variant="ghost" size="sm" onClick={connect}>
+                Connect Wallet
+              </TechnicalButton>
+            )}
             <Link to="/dashboard">
               <TechnicalButton variant="primary" size="sm">
                 Launch App
@@ -103,9 +113,15 @@ export function Header() {
               Docs
             </Link>
             <div className="flex flex-col gap-2 pt-4">
-              <TechnicalButton variant="secondary" size="sm">
-                Connect Wallet
-              </TechnicalButton>
+              {isConnected ? (
+                <TechnicalButton variant="secondary" size="sm" onClick={disconnect}>
+                  {publicKey?.slice(0, 6)}...{publicKey?.slice(-4)}
+                </TechnicalButton>
+              ) : (
+                <TechnicalButton variant="secondary" size="sm" onClick={connect}>
+                  Connect Wallet
+                </TechnicalButton>
+              )}
               <Link to="/dashboard">
                 <TechnicalButton variant="primary" size="sm" className="w-full">
                   Launch App
