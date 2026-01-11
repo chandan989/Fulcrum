@@ -23,6 +23,49 @@ Most bridges move *tokens*. **Fulcrum moves control—securely, verifiably, and 
 
 ---
 
+## 🚀 Live Deployment
+
+**Fulcrum Controller is LIVE on Casper Testnet!**
+
+| Detail | Value |
+|--------|-------|
+| **Contract Hash** | `hash-803bc77641db94ca0247662d76dbe96e4cc1feca82a269e3dd6d01035be99aa9` |
+| **Deploy Hash** | `54728021ff9dc1222dbaeed4cb10665de86906e2cebe4103e494e8821b00ad86` |
+| **Network** | Casper Testnet (`casper-test`) |
+| **Deployed** | January 12, 2026 |
+| **Entry Point** | `submit_intent(target_chain: u64, target_address: String, data: String)` |
+| **Explorer** | [View on Casper Explorer](https://testnet.cspr.live/deploy/54728021ff9dc1222dbaeed4cb10665de86906e2cebe4103e494e8821b00ad86) |
+| **Frontend** | Run locally: `cd fulcrum-web && npm run dev` |
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/chandan989/Fulcrum.git
+cd Fulcrum
+
+# Install frontend dependencies
+cd fulcrum-web
+npm install
+
+# Start the development server
+npm run dev
+# Open http://localhost:8080
+
+# Connect your Casper Wallet and create an intent!
+```
+
+### Technology Stack
+
+- **Smart Contract**: Rust (casper-contract 5.0.0, casper-types 6.0.0)
+- **Frontend**: React + TypeScript + Vite
+- **Blockchain SDK**: Casper JS SDK v5.0.7
+- **Wallet Integration**: Casper Wallet + Legacy Signer
+
+📚 **Full Documentation**: See [DEPLOYMENT.md](./DEPLOYMENT.md), [TESTING.md](./TESTING.md), and [INTEGRATION.md](./INTEGRATION.md)
+
+---
+
 ## 🎯 Positioning: Critical Infrastructure, Not Just DeFi
 
 ### Why This Matters
