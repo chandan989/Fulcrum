@@ -1,9 +1,11 @@
 // Intent Storage and Management
+import type { IntentStatus } from './relayerAPI';
+
 export interface StoredIntent {
     id: string;
     deployHash: string;
     timestamp: number;
-    status: 'pending' | 'proving' | 'confirmed' | 'failed';
+    status: IntentStatus;
     chain: string;
     action: string;
     target: string;
@@ -11,6 +13,9 @@ export interface StoredIntent {
     targetChain: number;
     targetAddress: string;
     data: string;
+    evmTxHash?: string;
+    evmBlockNumber?: number;
+    error?: string;
 }
 
 const INTENTS_STORAGE_KEY = 'fulcrum_intents';
@@ -42,13 +47,24 @@ export const IntentStorage = {
         return newIntent;
     },
 
-    // Update intent status
-    updateStatus(deployHash: string, status: StoredIntent['status']) {
+    // Update intent status (now called from relayer API polling)
+    updateStatus(
+        deployHash: string,
+        status: IntentStatus,
+        additionalData?: {
+            evmTxHash?: string;
+            evmBlockNumber?: number;
+            error?: string;
+        }
+    ) {
         const intents = this.getAll();
         const index = intents.findIndex(i => i.deployHash === deployHash);
 
         if (index !== -1) {
             intents[index].status = status;
+            if (additionalData) {
+                Object.assign(intents[index], additionalData);
+            }
             localStorage.setItem(INTENTS_STORAGE_KEY, JSON.stringify(intents));
         }
     },
@@ -73,8 +89,9 @@ export const IntentStorage = {
     getStats() {
         const intents = this.getRecent();
         return {
-            pending: intents.filter(i => i.status === 'pending').length,
+            pending_casper: intents.filter(i => i.status === 'pending_casper').length,
             proving: intents.filter(i => i.status === 'proving').length,
+            submitting_evm: intents.filter(i => i.status === 'submitting_evm').length,
             confirmed: intents.filter(i => i.status === 'confirmed').length,
             failed: intents.filter(i => i.status === 'failed').length,
             total: intents.length,

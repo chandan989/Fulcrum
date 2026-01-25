@@ -1,0 +1,27 @@
+{
+    "name": "fulcrum-circuits",
+    "version": "1.0.0",
+    "description": "Zero-Knowledge circuits for Fulcrum - Ed25519 signature verification",
+    "scripts": {
+        "compile": "bash scripts/compile.sh",
+        "setup": "bash scripts/trusted_setup.sh",
+        "test": "bash scripts/test_circuit.sh",
+        "generate-verifier": "bash scripts/generate_verifier.sh",
+        "clean": "rm -rf build/* ptau/*"
+    },
+    "keywords": [
+        "zk-snark",
+        "circom",
+        "ed25519",
+        "fulcrum"
+    ],
+    "author": "Fulcrum Team",
+    "license": "MIT",
+    "devDependencies": {
+        "circom": "^2.1.8",
+        "snarkjs": "^0.7.4"
+    },
+    "dependencies": {
+        "circomlib": "^2.0.5"
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "name": "fulcrum-relayer",
+    "version": "1.0.0",
+    "description": "Fulcrum Relayer Service - Listens to Casper events and submits ZK proofs to target chains",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsx watch src/index.ts",
+        "start": "node dist/index.js",
+        "test": "jest"
+    },
+    "keywords": [
+        "casper",
+        "relayer",
+        "zk-proof",
+        "cross-chain"
+    ],
+    "author": "Fulcrum Team",
+    "license": "MIT",
+    "dependencies": {
+        "casper-js-sdk": "^5.0.7",
+        "ethers": "^6.13.0",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "winston": "^3.13.0",
+        "snarkjs": "^0.7.4",
+        "axios": "^1.7.2",
+        "node-cron": "^3.0.3"
+    },
+    "devDependencies": {
+        "@types/node": "^22.5.0",
+        "@types/express": "^4.17.21",
+        "@types/node-cron": "^3.0.11",
+        "typescript": "^5.5.4",
+        "tsx": "^4.16.2",
+        "jest": "^29.7.0",
+        "@types/jest": "^29.5.12"
+    }
+}

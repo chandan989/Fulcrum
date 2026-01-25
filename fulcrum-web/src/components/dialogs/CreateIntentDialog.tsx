@@ -9,6 +9,7 @@ import { useCasper } from '@/hooks/useCasper';
 import { CasperService } from '@/lib/casper';
 import { toast } from 'sonner';
 import { IntentStorage } from '@/lib/intentStorage';
+import { RelayerAPI } from '@/lib/relayerAPI';
 
 type ActionType = 'transfer' | 'swap' | 'contract' | 'batch';
 
@@ -89,10 +90,10 @@ export function CreateIntentDialog({ open, onOpenChange }: CreateIntentDialogPro
             // 2. Sign and Send
             const deployHash = await CasperService.signAndSendDeploy(deploy, publicKey);
 
-            // 3. Save to localStorage
+            // 3. Save to localStorage with initial status
             const savedIntent = IntentStorage.add({
                 deployHash,
-                status: 'pending',
+                status: 'pending_casper',
                 chain: selectedChain,
                 action: actionType.charAt(0).toUpperCase() + actionType.slice(1),
                 target: recipientAddress || 'N/A',
@@ -112,16 +113,41 @@ export function CreateIntentDialog({ open, onOpenChange }: CreateIntentDialogPro
                 description: `Deploy Hash: ${deployHash.slice(0, 16)}...`
             });
 
-            // 5. Simulate status updates (in real app, this would come from blockchain events)
-            setTimeout(() => {
-                IntentStorage.updateStatus(deployHash, 'proving');
-                window.dispatchEvent(new CustomEvent('intentUpdated'));
-            }, 3000);
+            // 5. Start polling relayer for status updates
+            RelayerAPI.pollIntentStatus(deployHash, (status) => {
+                console.log('Intent status update:', status);
 
-            setTimeout(() => {
-                IntentStorage.updateStatus(deployHash, 'confirmed');
+                // Update local storage
+                IntentStorage.updateStatus(deployHash, status.status, {
+                    evmTxHash: status.evmTxHash,
+                    evmBlockNumber: status.evmBlockNumber,
+                    error: status.error,
+                });
+
+                // Emit event for UI update
                 window.dispatchEvent(new CustomEvent('intentUpdated'));
-            }, 8000);
+
+                // Show toast notifications for status changes
+                if (status.status === 'proving') {
+                    toast.info('ZK Proof Generation Started', {
+                        description: 'Relayer is generating zero-knowledge proof...'
+                    });
+                } else if (status.status === 'submitting_evm') {
+                    toast.info('Submitting to EVM Chain', {
+                        description: 'Transaction being sent to target chain...'
+                    });
+                } else if (status.status === 'confirmed') {
+                    toast.success('Intent Executed Successfully!', {
+                        description: status.evmTxHash
+                            ? `EVM Tx: ${status.evmTxHash.slice(0, 16)}...`
+                            : 'Transaction confirmed on target chain'
+                    });
+                } else if (status.status === 'failed') {
+                    toast.error('Intent Execution Failed', {
+                        description: status.error || 'Unknown error occurred'
+                    });
+                }
+            });
 
             // Close dialog and reset form
             setTimeout(() => {
