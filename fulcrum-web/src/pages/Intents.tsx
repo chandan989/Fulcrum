@@ -12,6 +12,7 @@ import { TechnicalButton } from '@/components/ui/TechnicalButton';
 import { TechnicalBadge } from '@/components/ui/TechnicalBadge';
 import { CreateIntentDialog } from '@/components/dialogs/CreateIntentDialog';
 import { IntentStorage, StoredIntent } from '@/lib/intentStorage';
+import { CasperService } from '@/lib/casper';
 
 type ActionType = 'transfer' | 'swap' | 'contract' | 'batch';
 type IntentStatus = 'pending' | 'proving' | 'executing' | 'confirmed' | 'failed';
